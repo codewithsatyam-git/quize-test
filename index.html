@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>participation page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <form name="submit-to-google-sheet">
+            <h1>Participation form</h1>
+            <h3>Firstname</h3><br>
+            <input type="text" name="Firstname" class="input" id="Firstname" placeholder="Enter your Firstname"><br>
+            <h3>Lastname</h3><br>
+            <input type="text" name="Lastname" class="input" id="Lastname" placeholder="Enter your Lastname"><br>
+            <h3>Father's name</h3><br>
+            <input type="text" name="Father" class="input" id="Father" placeholder="Enter your Father's name"><br>
+            <h3>Date of birth</h3><br>
+            <input type="date" name="Age" class="input" id="Age" placeholder="Enter your Age"><br>
+            <h3>Mobile number</h3><br>
+            <select>
+                <option value="">+91</option>
+                <option value="">+354</option>
+                <option value="">+62</option>
+                <option value="">+98</option>
+                <option value="">+964</option>
+                <option value="">+353</option>
+                <option value="">+972</option>
+                <option value="">+39</option>
+                <option value="">+1</option>
+                <option value="">+880</option>
+                <option value="">+44</option>
+
+            </select><input type="tel" name="Mobile" class="in" placeholder="Enter your number"><br>
+            <button type="submit" class="button">Submit</button>
+            <span class="span">Your details are submitted,<br>now click on "start quize" button</span>
+            <button id="button"><a href="quize page\index.html">Start Quize</a></button>
+        </form>
+    </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzLurcRZXSqoLgZrSxdhe1q3qtZsQ4DT3TBocbelJFjsqYvJFM7xHy-FxZyy-fkdYwS/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const startQuize = document.querySelector("#button")
+        const span = document.querySelector(".span")
+        const main = document.querySelector(".main-container")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => 
+                {
+                span.style.display = "block"
+                startQuize.style.display = "block"
+                }
+            )
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
